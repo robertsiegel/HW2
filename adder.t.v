@@ -11,6 +11,9 @@ module testFullAdder();
     // Swap above lines to test both modules
 
     initial begin
+        $dumpfile("adder.vcd");
+        $dumpvars(0, testFullAdder);
+
 	    $display("a|b|Cin|Cout sum|Expected");            // Prints header for truth table
 	    a=0;b=0;carryin=0; #1                                 // Set A and B, wait for update (#1)
 	    $display("%b|%b| %b |  %b  %b  |  0  0", a,b,carryin,carryout,sum);
