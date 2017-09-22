@@ -19,6 +19,22 @@ module structuralMultiplexer
     input address0, address1,
     input in0, in1, in2, in3
 );
-    // Your multiplexer code here
+    not invA0(invA0, address0);
+    not invA1(invA1, address1);
+
+    and and0(in0Selected, invA0, invA1); // in0 is selected with address 00
+    and and0True(out0, in0Selected, in0); // in0 is 1 and selected
+
+    and and1(in1Selected, address0, invA1); // in1 is selected with address 01
+    and and1True(out1, in1Selected, in1); // in1 is 1 and selected
+
+    and and2(in2Selected, invA0, address1); // in2 is selected with address 10
+    and and2True(out2, in2Selected, in2); // in2 is 1 and selected
+
+    and and3(in3Selected, address0, address1); // in3 is selected with address 11
+    and and3True(out3, in3Selected, in3); // in3 is 1 and selected
+
+    or orOut(out, out0, out1, out2, out3); // if the in that is selected is 1, this returns 1
+
 endmodule
 
